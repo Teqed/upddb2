@@ -1,19 +1,16 @@
 const {app, BrowserWindow} = require('electron')
+const server = require('./app');
 
-const server = require('./app'); 
-
-let mainWindow
-
+let mainWindow;
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 700,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
-//  mainWindow.loadFile('index.html')
   mainWindow.loadURL('http://localhost:3000')
   mainWindow.on('closed', function () {
     mainWindow = null

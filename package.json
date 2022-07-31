@@ -1,31 +1,40 @@
 {
-  "name": "node-desktop-app-template",
+  "name": "upddb2",
   "version": "1.0.0",
-  "description": "Simple Node.js Desktop Application Template using Electron and Bootstrap",
+  "description": "Update DB2 files",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/majikarp/node-desktop-app-template",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Teqed/upddb2.git"
+  },
   "keywords": [
     "Electron",
     "Node",
-    "Template",
-    "Hackathon"
+    "db2"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Timothy Quilling",
+  "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.20.0",
-    "bootstrap": "^5.2.0",
-    "docxtemplater": "^3.31.2",
-    "express": "^4.18.1",
-    "jquery": "^3.6.0",
-    "pizzip": "^3.1.1"
+    "bootstrap": "4.2.1",
+    "bootswatch": "^5.2.0",
+    "docxtemplater": "^3.16.3",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "jquery": "3.3.1",
+    "node-ssh": "^13.0.0",
+    "nodemon": "^2.0.2",
+    "pizzip": "^3.0.6"
   },
   "devDependencies": {
-    "browser-sync": "^2.27.10",
-    "electron": "^19.0.10",
-    "gulp": "^4.0.2"
-  }
+    "browser-sync": "2.26.3",
+    "electron": "^4.2.12",
+    "gulp": "4.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Teqed/upddb2/issues"
+  },
+  "homepage": "https://github.com/Teqed/upddb2#readme"
 }

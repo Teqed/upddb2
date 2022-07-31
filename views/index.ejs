@@ -1,72 +1,41 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Node.js Desktop Application using Electron, Bootstrap and Express.js</title>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' />
-  <link rel='stylesheet' href='style.css' />
+  <title>Copy User</title>
+  <link rel='stylesheet' href='../vendor/bootswatch/darkly/bootstrap.css' />
+  <link rel='stylesheet' href='https://bootswatch.com/5/darkly/bootstrap.css' />
 </head>
 <body>
-
-  <div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
+  <div class="container">   
     <div class="form-style-6">
-
-       <h1>Enter client details</h1>
+       <h1>Copy User</h1>
         <form class="border border-light p-5" method="post" action="/form-submit" id="clientform">
           <div class="form-group">
-
+            <label for="useridInput">User ID</label>
+            <input type="type" class="form-control" id="useridInput" placeholder="User ID" name="userid">
             <br>
-            <label>Status</label>
-            <select name="status" form="clientform">
-              <option value="mr">Mr</option>
-              <option value="mrs">Mrs</option>
-              <option value="ms">Ms</option>
-            </select>
-
-            <label for="nameInput">First name</label>
-            <input type="type" class="form-control" id="nameInput" placeholder="First name" name="name">
+            <label for="usernameInput">User Name</label>
+            <input type="type" class="form-control" id="usernameInput" placeholder="User Name" name="username">
             <br>
-            <label for="surnameInput">Surname</label>
-            <input type="type" class="form-control" id="surnameInput" placeholder="Surname" name="surname">
-            <br>
-            <label for="nameInput">Postal address</label>
-            <input type="type" class="form-control" id="postalInput" placeholder="Postal address" name="postal">
-            <br>
-            <label for="suburbInput">Suburb</label>
-            <input type="type" class="form-control" id="nameInput" placeholder="Suburb" name="suburb">
-            <br>
-            <label for="stateInput">State</label>
-            <input type="type" class="form-control" id="stateInput" placeholder="State" name="state">
-            <br>
-            <label for="phoneInput">Phone</label>
-            <input type="type" class="form-control" id="phoneInput" placeholder="Phone" name="phone">
-            <br>
-            <label for="mobileInput">Mobile</label>
-            <input type="type" class="form-control" id="mobileInput" placeholder="Mobile" name="mobile">
+            <label for="copyInput">Copy from</label>
+            <input type="type" class="form-control" id="copyInput" placeholder="User ID" name="copy">
             <br>
             <label for="emailInput">Email</label>
-            <input type="type" class="form-control" id="emailInput" placeholder="Email" name="email">
+            <input type="type" class="form-control" id="emailInput" placeholder="user@address.com" name="email">
             <br>
-            <label for="postcodeInput">Postcode</label>
-            <input type="type" class="form-control" id="postcodeInput" placeholder="Postcode" name="postcode">
+            <label>Environments &ensp; </label> 
+            <select name="status" form="clientform">
+              <option value="both">Copy in both environments</option>
+              <option value="dev">Copy in just Dev</option>
+              <option value="test">Copy in just Test</option>
+            </select>
             <br>
-            <label for="faxInput">Fax</label>
-            <input type="type" class="form-control" id="faxInput" placeholder="Fax" name="fax">
             <br>
           </div>
-
-          <button type="submit" class="btn btn-primary" id="send" onclick="alert('thank you!')">Submit</button>
-
+          <button type="submit" class="btn btn-primary" id="send" onclick="alert('Copying User')">Submit</button>
         </form>
-
-        <br>
-        <br>
-
     </div>
   </div>
-
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
