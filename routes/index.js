@@ -1,57 +1,45 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+let PizZip = require('pizzip');
+let Docxtemplater = require('docxtemplater');
+let fs = require('fs');
+let path = require('path');
 
-var PizZip = require('pizzip');
-var Docxtemplater = require('docxtemplater');
-
-var fs = require('fs');
-var path = require('path');
-
-// Load the docx file as a binary
-var content = fs
+try{
+  let ssh = require('node-ssh');
+  }catch(e){
+    console.log('*** exception cached ***\n' + e);
+  }
+//Load the docx file as a binary
+let content = fs
     .readFileSync(path.resolve(__dirname, 'template.docx'), 'binary');
-
-var zip = new PizZip(content);
-
-var doc = new Docxtemplater();
-
-async function convertDocument(status, name, surname, postal, suburb, state, phone, mobile, email, postcode, fax, x, y) {
-
+let zip = new PizZip(content);
+let doc = new Docxtemplater();
+async function convertDocument(status, name, surname, postal, suburb, state, phone, mobile, email, postcode, fax, x, y) { 
 doc.loadZip(zip);
-
-var mr = false;
-var mrs = false;
-var ms = false;
-
-if(status === "mr") mr = true;
-
-if(status === "mrs") mrs = true;
-
-if(status === "ms") ms = true;
-
-// set the templateVariables
+let mr = false;
+let mrs = false;
+let ms = false;
+if(status === "both") both = true;
+if(status === "dev") dev = true;
+if(status === "test") test = true;
+//set the templateVariables
 doc.setData({
-  hasMr: mr,
-  hasMrs: mrs,
-  hasMs: ms,
-  name: name,
-  surname: surname,
-  postal: postal,
-  suburb: suburb,
-  state: state,
-  phone: phone,
-  mobile: mobile,
-  email: email,
-  postcode: postcode,
-  fax: fax
+  both: both,
+  dev: dev,
+  test: test,
+  userid: userid,
+  username: username,
+  copy: copy,
+  email: email
 });
-
 try {
-  // renders the document (replacing all occurences of {first_name} by James, {last_name} by Smith, ...)
+  // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
   doc.render()
 }
 catch (error) {
-  var e = {
+  // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object).
+  let e = {
       message: error.message,
       name: error.name,
       stack: error.stack,
@@ -63,30 +51,27 @@ catch (error) {
           return error.properties.explanation;
       }).join("\n");
       console.log('errorMessages', errorMessages);
+      // errorMessages is a humanly readable message looking like this :
+      // 'The tag beginning with "foobar" is unopened'
   }
   throw error;
 }
-
-var buf = doc.getZip()
+let buf = doc.getZip()
            .generate({type: 'nodebuffer'});
 
 // buf is a nodejs buffer, you can either write it to a file or do anything else with it.
 fs.writeFileSync(path.resolve(__dirname, '..\\output.docx'), buf);
-
 }
-
-/* GET the home page. */
+/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
 /***
- * Form transformation - inject data into a word document
+ * Form transformation - inject data into F2 Form happens here
  */
 router.post('/form-submit', function(req, res, next) {
-
-  var status, name, surname, postal, suburb, state, phone, mobile, email, postcode, fax;
-
+  console.log(req.body);
+  let status, name, surname, postal, suburb, state, phone, mobile, email, postcode, fax;
   status = req.body.status;
   name = req.body.name;
   surname = req.body.surname;
@@ -98,9 +83,7 @@ router.post('/form-submit', function(req, res, next) {
   email = req.body.email;
   postcode = req.body.postcode;
   fax = req.body.fax;
-
   convertDocument(status, name, surname, postal, suburb, state, phone, mobile, email, postcode, fax);
-
+ // res.render('form-submit', { query: req.body });
 });
-
 module.exports = router;
