@@ -1,0 +1,9 @@
+Title   [  {#hasMr}X{/hasMr} ] Mr  [  {#hasMrs}X{/hasMrs}]  Mrs  [ {#hasMs}X{/hasMs}]  Ms [   ]  Other please specify:
+First name      {name}
+Surname {surname}
+Postal address  {postal}
+Suburb  {suburb}
+State or territory      {state} Postcode        {postcode}
+Phone number    {phone} Fax number      {fax}
+Mobile number   {mobile}
+Email address   {email}
